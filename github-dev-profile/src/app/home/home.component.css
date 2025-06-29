@@ -1,0 +1,94 @@
+/* Container principal da página Home */
+.home-container {
+  display: flex;
+  flex-direction: column; /* Itens empilhados verticalmente */
+  align-items: center; /* Centraliza itens horizontalmente */
+  justify-content: center; /* Centraliza itens verticalmente */
+  min-height: 100vh; /* Ocupa a altura total da viewport */
+  background-color: #f0f2f5; /* Cor de fundo suave */
+  font-family: 'Arial', sans-serif; /* Fonte padrão */
+  padding: 20px; /* Espaçamento interno */
+  box-sizing: border-box; /* Inclui padding e borda na largura/altura */
+}
+
+/* Título principal da página */
+h1 {
+  color: #333; /* Cor do texto */
+  margin-bottom: 30px; /* Margem inferior */
+  font-size: 2.5em; /* Tamanho da fonte */
+  text-align: center; /* Alinhamento central */
+  max-width: 90%; /* Limita a largura para responsividade */
+}
+
+/* Campo de entrada de texto */
+.user-input {
+  padding: 12px 15px; /* Espaçamento interno */
+  border: 1px solid #ddd; /* Borda suave */
+  border-radius: 8px; /* Cantos arredondados */
+  font-size: 1.1em; /* Tamanho da fonte */
+  width: 100%; /* Ocupa toda a largura disponível */
+  max-width: 400px; /* Limita a largura máxima */
+  margin-bottom: 20px; /* Margem inferior */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Sombra sutil */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Transição suave */
+}
+
+.user-input:focus {
+  border-color: #007bff; /* Borda azul ao focar */
+  box-shadow: 0 0 0 3px rgba(0,123,255,0.25); /* Sombra de foco azul */
+  outline: none; /* Remove o contorno padrão do navegador */
+}
+
+/* Botão de pesquisa */
+.search-button {
+  padding: 12px 25px; /* Espaçamento interno */
+  background-color: #007bff; /* Cor de fundo azul */
+  color: white; /* Cor do texto */
+  border: none; /* Sem borda */
+  border-radius: 8px; /* Cantos arredondados */
+  font-size: 1.1em; /* Tamanho da fonte */
+  cursor: pointer; /* Cursor de mão ao passar por cima */
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Transições suaves */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Sombra inicial */
+}
+
+/* Efeito ao passar o mouse sobre o botão */
+.search-button:hover {
+  background-color: #0056b3; /* Azul mais escuro */
+  transform: translateY(-2px); /* Eleva o botão ligeiramente */
+  box-shadow: 0 6px 10px rgba(0,0,0,0.15); /* Sombra maior */
+}
+
+/* Efeito ao clicar no botão */
+.search-button:active {
+  transform: translateY(0); /* Volta à posição original */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Sombra menor */
+}
+
+/* --- Responsividade --- */
+
+/* Para telas de até 768px (tablets e celulares maiores) */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2em; /* Reduz o tamanho do título */
+  }
+  .user-input {
+    font-size: 1em; /* Reduz o tamanho da fonte do input */
+    max-width: 300px; /* Reduz a largura máxima do input */
+  }
+  .search-button {
+    font-size: 1em; /* Reduz o tamanho da fonte do botão */
+    padding: 10px 20px; /* Reduz o padding do botão */
+  }
+}
+
+/* Para telas de até 480px (celulares) */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5em; /* Reduz ainda mais o título */
+  }
+  .user-input {
+    max-width: 250px; /* Reduz a largura máxima do input */
+    padding: 10px 12px;
+  }
+}

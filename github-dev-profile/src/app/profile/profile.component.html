@@ -1,0 +1,69 @@
+<div class="profile-container">
+  <!-- Exibição do estado de carregamento usando @if -->
+  @if (loading) {
+    <div class="loading-message">Carregando perfil de {{ username }}...</div>
+  }
+  <!-- Exibição de mensagens de erro usando @if -->
+  @if (error) {
+    <div class="error-message">
+      <p>{{ error }}</p>
+      <button (click)="goBack()" class="back-button">Voltar para a Pesquisa</button>
+    </div>
+  }
+
+  <!-- Exibição do perfil do usuário somente se houver dados e não houver carregamento ou erro -->
+  @if (user && !loading && !error) {
+    <div class="user-profile-card">
+      <button (click)="goBack()" class="back-button">Voltar para a Pesquisa</button>
+
+      <div class="user-info">
+        <img [src]="user.avatar_url" alt="Avatar do Usuário" class="user-avatar">
+        <!-- Exibe o nome real do usuário ou o login se o nome real não estiver disponível -->
+        <h2>{{ user.name || user.login }}</h2>
+        @if (user.bio) {
+          <p class="user-bio">{{ user.bio }}</p>
+        }
+        @if (user.location) {
+          <p class="user-location">Localização: {{ user.location }}</p>
+        }
+        <p class="user-followers">Seguidores: {{ user.followers }}</p>
+        <p class="user-following">Seguindo: {{ user.following }}</p>
+      </div>
+
+      <div class="profile-actions">
+        <!-- Botão para visitar o site, exibido somente se user.blog existir -->
+        @if (user.blog) {
+          <button (click)="goToSite()" class="action-button website-button">Visitar Site</button>
+        }
+        <!-- Botão para visitar o Twitter, exibido somente se user.twitter_username existir -->
+        @if (user.twitter_username) {
+          <button (click)="goToTwitter()" class="action-button twitter-button">Visitar Twitter</button>
+        }
+      </div>
+
+      <h3>Repositórios Públicos ({{ repositories.length }})</h3>
+      <!-- Lista de repositórios, exibida somente se houver repositórios -->
+      @if (repositories.length > 0) {
+        <ul class="repo-list">
+          <!-- Itera sobre os repositórios usando @for. 'track repo.id' é essencial para performance. -->
+          @for (repo of repositories; track repo.id) {
+            <li class="repo-item">
+              <!-- Nome do repositório como link para o GitHub original, abre em nova aba -->
+              <a [href]="repo.html_url" target="_blank" class="repo-name-link">{{ repo.name }}</a>
+              <span class="repo-stars">⭐ {{ repo.stargazers_count }}</span>
+              @if (repo.description) {
+                <p class="repo-description">{{ repo.description }}</p>
+              }
+              @if (repo.language) {
+                <div class="repo-language">Linguagem: {{ repo.language }}</div>
+              }
+            </li>
+          }
+        </ul>
+      } @else {
+        <!-- Mensagem se não houver repositórios -->
+        <p class="no-repos-message">Nenhum repositório público encontrado ou ocorreu um erro ao carregar.</p>
+      }
+    </div>
+  }
+</div>
